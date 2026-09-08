@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Expediente clínico · exploración de diseño para escritorio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="gallery-shell">
+  <main class="gallery">
+    <header class="gallery-header">
+      <div>
+        <p class="eyebrow">Avance · exploración de diseño</p>
+        <h1>¿Todo a la vista, o una sección a la vez?</h1>
+        <p class="lede">
+          Las dos muestran la misma información clínica —expediente, odontograma, periodontograma,
+          biopelícula, radiografías, citas y cuenta— pero disponen los elementos de forma distinta.
+          La navegación completa está habilitada: agenda, pacientes, tratamientos, facturación,
+          reseñas y configuración. Comparten los mismos datos: lo que edites en una se ve en la otra.
+          Todo es responsive: funciona igual en teléfono, tableta y escritorio.
+        </p>
+      </div>
+      <div class="gallery-meta"><span class="dot"></span> Datos de demostración · CRUD completo</div>
+    </header>
+
+    <section class="concept-grid">
+      <a class="concept-card" href="option-a-command-center.html">
+        <p class="concept-number">01</p>
+        <div class="concept-preview preview-a" aria-hidden="true">
+          <div class="preview-top"></div>
+          <div class="preview-strip"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="preview-columns"><b></b><em></em></div>
+        </div>
+        <div class="concept-copy">
+          <h2>Command center</h2>
+          <p>Todo en una pantalla: identificación editable, antecedentes, evoluciones desplegables y una carta dental con los tres módulos en un control segmentado.</p>
+          <ul class="concept-points">
+            <li>Cero navegación entre pestañas</li>
+            <li>Odontograma, periodontograma y biopelícula sin cambiar de vista</li>
+            <li>Citas, radiografías y firma en el mismo scroll</li>
+            <li>Acciones frecuentes junto al selector de paciente</li>
+            <li>Mejor para triage y consulta rápida</li>
+          </ul>
+          <span class="concept-link">Ver todo en una pantalla <b aria-hidden="true">→</b></span>
+        </div>
+      </a>
+
+      <a class="concept-card" href="option-b-split-workspace.html">
+        <p class="concept-number">02</p>
+        <div class="concept-preview preview-b" aria-hidden="true">
+          <div class="preview-top"></div>
+          <div class="preview-columns"><i></i><b></b></div>
+        </div>
+        <div class="concept-copy">
+          <h2>Split workspace</h2>
+          <p>El paciente y sus alertas quedan fijos a la izquierda; a la derecha se recorren las once secciones del expediente, una a la vez y a pantalla completa.</p>
+          <ul class="concept-points">
+            <li>Contexto clínico siempre visible</li>
+            <li>11 secciones, cada una a pantalla completa</li>
+            <li>Sección compartible por URL</li>
+          </ul>
+          <span class="concept-link">Ver una sección a la vez <b aria-hidden="true">→</b></span>
+        </div>
+      </a>
+
+    </section>
+
+    <section class="notes-grid">
+      <div class="note-card">
+        <h3>Qué funciona de verdad</h3>
+        <ul>
+          <li>Editar cualquier dato del paciente en línea, con validación de correo y teléfono.</li>
+          <li>Crear, editar (versionando), firmar y eliminar evoluciones con la nota estructurada del CRM.</li>
+          <li>Revisar antecedentes por sección, agregar y quitar datos; el estado de revisión cambia solo.</li>
+          <li>Marcar procedimientos del plan; el porcentaje y el pendiente se recalculan.</li>
+          <li>Odontograma FDI de 52 dientes: cada pieza es una cruz de cinco caras; el hallazgo se
+            asigna por cara y el número abre estado, hallazgos de diente completo, ortodoncia y nota.</li>
+          <li>El «Diagnóstico Odontograma» se redacta solo a partir de lo cargado.</li>
+          <li>Periodontograma completo: PLP, PB y MG por vestibular y palatino/lingual, con las líneas
+            de margen gingival y fondo de bolsa dibujadas sobre los dientes. Se carga entero con Tab.</li>
+          <li>Biopelícula por cuadrantes de cada cara, con índice de placa en vivo.</li>
+          <li>Agenda tipo calendario, por semana o por día, con un color por doctor, filtro por
+            profesional, y creación y cambio de estado de citas.</li>
+          <li>Historial de citas del paciente en línea de tiempo, separando próximas de pasadas.</li>
+          <li>Radiografías en pestaña propia, aparte de Documentos: se tratan como fotos, con filtro
+            por tipo, ampliación y carga de imágenes.</li>
+          <li>Foto del paciente y captura de firma en un pad, para consentimientos.</li>
+          <li>Reseñas del paciente, la función que traía el software anterior.</li>
+          <li>CRUD completo: pacientes, doctores, planes y procedimientos, fórmulas, documentos,
+            imágenes, movimientos de cuenta y el propio catálogo de hallazgos del odontograma.</li>
+          <li>Radiografías y tomografías como categorías separadas dentro de Imágenes.</li>
+          <li>Evolución del tratamiento por fechas: qué se hizo, cuándo y qué falta.</li>
+          <li>Cambiar de paciente (3 casos distintos) y reiniciar la demo cuando quieras.</li>
+        </ul>
+      </div>
+      <div class="note-card">
+        <h3>Qué mirar con los doctores</h3>
+        <ul>
+          <li>¿Cuánta información cabe antes de que la pantalla estorbe?</li>
+          <li>¿La nota clínica se edita mejor en modal (A y C) o en panel fijo (B)?</li>
+          <li>¿El riel de contexto de B compensa el ancho que ocupa?</li>
+          <li>¿Vale la pena que el doctor configure su propio tablero, como en C?</li>
+        </ul>
+        <p class="note-foot">Atajos: <kbd>Alt</kbd>+<kbd>1</kbd>/<kbd>2</kbd>saltan entre prototipos.</p>
+      </div>
+    </section>
+
+    <footer class="gallery-footer">
+      Prototipos estáticos, sin backend. El estado se guarda en el navegador; «Reiniciar demo» vuelve al punto de partida.
+    </footer>
+  </main>
+</body>
+</html>
