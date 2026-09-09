@@ -160,19 +160,19 @@
           ${rows.length === 0
             ? tpl`<p class="muted">Ninguna evolución coincide con "${view.filter}".</p>`
             : tpl`<div class="scroll-x"><table class="table selectable">
-                <thead><tr><th style="width:130px">Fecha</th><th>Título</th><th style="width:110px">Tipo</th><th style="width:110px">Estado</th><th style="width:90px"></th></tr></thead>
+                <thead><tr><th style="width:130px">Fecha</th><th>Título</th><th style="width:110px">Tipo</th><th style="width:110px">Estado</th><th class="actions-cell" style="width:90px"></th></tr></thead>
                 <tbody>${rows.map(
                   (encounter) => tpl`<tr class="${selected && selected.id === encounter.id ? 'selected' : ''}" data-select="${encounter.id}" tabindex="0">
-                    <td class="muted">${UI.fmtShort(encounter.date)}<br><small>${UI.fmtTime(encounter.date)}</small></td>
-                    <td><b>${encounter.title}</b><div class="muted xs">${encounter.provider}</div></td>
-                    <td><span class="badge blue">${Data.ENCOUNTER_KINDS[encounter.kind]}</span></td>
-                    <td>${encounter.signed
+                    <td class="muted" data-label="Fecha">${UI.fmtShort(encounter.date)}<br><small>${UI.fmtTime(encounter.date)}</small></td>
+                    <td data-label="Título"><b>${encounter.title}</b><div class="muted xs">${encounter.provider}</div></td>
+                    <td data-label="Tipo"><span class="badge blue">${Data.ENCOUNTER_KINDS[encounter.kind]}</span></td>
+                    <td data-label="Estado">${encounter.signed
                       ? tpl`<span class="badge">Firmada v${encounter.versions}</span>`
                       : raw('<span class="badge warn">Sin firmar</span>')}</td>
-                    <td>
+                    <td class="actions-cell"><span class="row-actions">
                       <button class="icon-btn" data-edit-encounter="${encounter.id}" aria-label="Editar ${encounter.title}">${UI.icon('pencil')}</button>
                       <button class="icon-btn" data-delete="${encounter.id}" aria-label="Eliminar ${encounter.title}">${UI.icon('trash')}</button>
-                    </td>
+                    </span></td>
                   </tr>`
                 )}</tbody>
               </table></div>`}
@@ -259,15 +259,15 @@
           </div>
           <div class="progress"><i style="width:${progress.pct}%"></i></div>
           <div class="scroll-x"><table class="table">
-            <thead><tr><th style="width:44px"></th><th>Procedimiento</th><th style="width:70px">Diente</th><th style="width:120px">Valor</th><th style="width:110px">Fecha</th><th style="width:74px"></th></tr></thead>
+            <thead><tr><th style="width:44px"></th><th>Procedimiento</th><th style="width:70px">Diente</th><th style="width:120px">Valor</th><th style="width:110px">Fecha</th><th class="actions-cell" style="width:74px"></th></tr></thead>
             <tbody>${plan.items.map(
               (item) => tpl`<tr>
                 <td><input type="checkbox" data-plan="${plan.id}" data-plan-item="${item.id}" ${item.done ? raw('checked') : ''} aria-label="Marcar ${item.name}"></td>
-                <td class="${item.done ? 'done' : ''}">${item.name}</td>
-                <td class="muted">${item.tooth}</td>
-                <td>${UI.fmtMoney(item.price)}</td>
-                <td class="muted">${item.done ? UI.fmtDate(item.date) : 'Pendiente'}</td>
-                <td><span class="row-actions">
+                <td class="${item.done ? 'done' : ''}" data-label="Procedimiento">${item.name}</td>
+                <td class="muted" data-label="Diente">${item.tooth}</td>
+                <td data-label="Valor">${UI.fmtMoney(item.price)}</td>
+                <td class="muted" data-label="Fecha">${item.done ? UI.fmtDate(item.date) : 'Pendiente'}</td>
+                <td class="actions-cell"><span class="row-actions">
                   <button class="icon-btn" data-plan-item-edit="${item.id}" data-plan="${plan.id}" data-plan-patient="${patient.id}" aria-label="Editar ${item.name}">${UI.icon('pencil')}</button>
                   <button class="icon-btn" data-plan-item-delete="${item.id}" data-plan="${plan.id}" data-plan-patient="${patient.id}" aria-label="Eliminar ${item.name}">${UI.icon('trash')}</button>
                 </span></td>
@@ -282,10 +282,10 @@
         <thead><tr><th>Código</th><th>Fecha</th><th>Total</th><th>Estado</th></tr></thead>
         <tbody>${patient.estimates.map(
           (estimate) => tpl`<tr>
-            <td><b>${estimate.code}</b></td>
-            <td class="muted">${UI.fmtDate(estimate.date)}</td>
-            <td>${UI.fmtMoney(estimate.total)}</td>
-            <td><span class="badge ${estimate.status === 'Aceptado' ? '' : 'warn'}">${estimate.status}</span></td>
+            <td data-label="Código"><b>${estimate.code}</b></td>
+            <td class="muted" data-label="Fecha">${UI.fmtDate(estimate.date)}</td>
+            <td data-label="Total">${UI.fmtMoney(estimate.total)}</td>
+            <td data-label="Estado"><span class="badge ${estimate.status === 'Aceptado' ? '' : 'warn'}">${estimate.status}</span></td>
           </tr>`
         )}</tbody>
       </table></div>`;
@@ -301,11 +301,11 @@
               .sort((a, b) => String(b.date).localeCompare(String(a.date)))
               .map(
                 (item) => tpl`<tr>
-                  <td class="muted">${UI.fmtDate(item.date)}</td>
-                  <td><b>${item.name}</b></td>
-                  <td class="muted">${item.tooth}</td>
-                  <td class="muted">${item.plan}</td>
-                  <td>${UI.fmtMoney(item.price)}</td>
+                  <td class="muted" data-label="Fecha">${UI.fmtDate(item.date)}</td>
+                  <td data-label="Procedimiento"><b>${item.name}</b></td>
+                  <td class="muted" data-label="Diente">${item.tooth}</td>
+                  <td class="muted" data-label="Plan">${item.plan}</td>
+                  <td data-label="Valor">${UI.fmtMoney(item.price)}</td>
                 </tr>`
               )}</tbody>
           </table></div>`;
@@ -334,14 +334,14 @@
           ? tpl`<p class="empty-state">Este paciente no tiene fórmulas médicas.
               <button class="btn small primary" data-action="prescription">${UI.icon('plus')}<span>Crear la primera</span></button></p>`
           : tpl`<div class="scroll-x"><table class="table">
-              <thead><tr><th style="width:104px">Fecha</th><th>Medicamento</th><th>Indicación</th><th style="width:120px">Profesional</th><th style="width:74px"></th></tr></thead>
+              <thead><tr><th style="width:104px">Fecha</th><th>Medicamento</th><th>Indicación</th><th style="width:120px">Profesional</th><th class="actions-cell" style="width:74px"></th></tr></thead>
               <tbody>${patient.prescriptions.map(
                 (fx) => tpl`<tr>
-                  <td class="muted">${UI.fmtDate(fx.date)}</td>
-                  <td><b>${fx.title}</b></td>
-                  <td class="muted">${fx.detail}</td>
-                  <td class="muted">${fx.provider}</td>
-                  <td><span class="row-actions">
+                  <td class="muted" data-label="Fecha">${UI.fmtDate(fx.date)}</td>
+                  <td data-label="Medicamento"><b>${fx.title}</b></td>
+                  <td class="muted" data-label="Indicación">${fx.detail}</td>
+                  <td class="muted" data-label="Profesional">${fx.provider}</td>
+                  <td class="actions-cell"><span class="row-actions">
                     <button class="icon-btn" data-prescription-edit="${fx.id}" aria-label="Editar ${fx.title}">${UI.icon('pencil')}</button>
                     <button class="icon-btn" data-prescription-delete="${fx.id}" aria-label="Eliminar ${fx.title}">${UI.icon('trash')}</button>
                   </span></td>

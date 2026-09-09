@@ -91,6 +91,8 @@ img, svg { max-width: 100%; }
 .scroll-x { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
 .scroll-x::-webkit-scrollbar { height: 8px; }
 .scroll-x::-webkit-scrollbar-thumb { background: #c8d3db; border-radius: 4px; }
+.odo-rows::-webkit-scrollbar, .bio-rows::-webkit-scrollbar { height: 6px; }
+.odo-rows::-webkit-scrollbar-thumb, .bio-rows::-webkit-scrollbar-thumb { background: #c8d3db; border-radius: 3px; }
 .scroll-hint { font-size: 11px; color: var(--muted); margin-top: 6px; }
 
 /* ================================================================== *
@@ -413,6 +415,8 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--primary); widt
 .table.selectable tbody tr.selected { background: var(--primary-soft); }
 .row-actions { display: flex; gap: 2px; justify-content: flex-end; }
 
+.actions-cell .row-actions { justify-content: flex-end; }
+
 .plain-list { list-style: none; margin: 0; padding: 0; }
 .plain-list li { padding: 4px 0; font-size: 12px; }
 .rail-list { list-style: none; padding: 0; margin: 0; }
@@ -589,17 +593,29 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--primary); widt
 
 .odo-arch { position: relative; }
 .odo-sides { display: flex; justify-content: space-between; font-size: 10px; text-transform: uppercase; letter-spacing: 0.09em; color: var(--muted); font-weight: 800; margin-bottom: 8px; }
-.odo-rows { display: flex; flex-direction: column; gap: 10px; }
-.odo-row { display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 6px; }
-.odo-half { display: flex; gap: 2px; flex: 1 1 300px; justify-content: center; }
+.odo-rows {
+  display: flex; flex-direction: column; gap: 10px; padding: 3px 0;
+  /* Un único scroll para todo el arco: así los cuatro renglones y las dos
+     mitades se mueven juntos y la línea media nunca se desalinea. */
+  overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.odo-row { display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 4px; }
+.odo-half { display: flex; gap: 2px; flex: 1 1 100%; justify-content: center; min-width: 0; }
 .odo-midline { width: 2px; align-self: stretch; background: #ccd8e0; border-radius: 1px; flex: none; }
 
-.odo-slot { width: clamp(30px, 5.6vw, 42px); display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px 0; border-radius: 6px; }
+.odo-slot {
+  /* El diente puede encogerse porque la cruz se mide en porcentaje de su
+     casilla: nunca se desborda, que era el fallo original. */
+  flex: 1 1 auto; width: auto; min-width: 26px; max-width: 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 2px 0; border-radius: 6px;
+}
 .odo-slot.selected { background: var(--primary-soft); }
 .odo-number { border: 0; background: transparent; font-size: clamp(9px, 1.4vw, 11px); font-weight: 750; color: #465a68; padding: 1px 4px; border-radius: 4px; }
 .odo-number:hover { background: var(--primary-soft); color: var(--primary); }
 .odo-cross {
-  position: relative; display: grid; width: clamp(26px, 5vw, 36px); height: clamp(26px, 5vw, 36px);
+  position: relative; display: grid; width: 100%; max-width: 36px; aspect-ratio: 1;
   grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
 }
 .odo-surface { border: 1px solid #bfccd6; background: #fff; padding: 0; }
@@ -692,13 +708,17 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--primary); widt
  * Biopelícula
  * ================================================================== */
 
-.bio-rows { display: flex; flex-direction: column; gap: 8px; margin: 8px 0 0; }
-.bio-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; }
-.bio-half { display: flex; gap: 2px; flex: 1 1 280px; justify-content: center; }
-.bio-slot { width: clamp(28px, 5.2vw, 40px); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.bio-rows {
+  display: flex; flex-direction: column; gap: 8px; margin: 8px 0 0; padding: 3px 0;
+  overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.bio-row { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px; }
+.bio-half { display: flex; gap: 2px; flex: 1 1 100%; justify-content: center; min-width: 0; }
+.bio-slot { flex: 1 1 auto; width: auto; min-width: 24px; max-width: 40px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
 .bio-slot.absent { opacity: 0.45; }
 .bio-number { font-size: 9px; color: var(--muted); font-weight: 700; }
-.bio-cross { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: clamp(22px, 4vw, 30px); height: clamp(22px, 4vw, 30px); }
+.bio-cross { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; width: 100%; max-width: 30px; aspect-ratio: 1; }
 .bio-cell { border: 1px solid #bfccd6; background: #fff; padding: 0; }
 .bio-cell:hover:not(:disabled) { background: var(--primary-soft); }
 .bio-cell.stained { background: #c4437a; border-color: #9d2d5d; }
@@ -1077,8 +1097,6 @@ input[type="color"].input { height: 36px; padding: 3px; cursor: pointer; }
 .perio-jumps { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
 .perio-jumps .btn { text-decoration: none; }
 
-/* 14 · título de vista */
-.view-title { font-size: 15px; font-weight: 650; letter-spacing: -.01em; margin: 0; }
 
 /* 16 · sello de guardado */
 .save-stamp { font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -1214,14 +1232,47 @@ input[type="color"].input { height: 36px; padding: 3px; cursor: pointer; }
   .concept-card:hover { transform: none; }
 }
 
-@media (pointer: coarse) {
-  .odo-cross { width: 78px; height: 78px; }
-  .odo-slot { width: 84px; }
-  .odo-number { font-size: 13px; padding: 3px 8px; }
-  .bio-cross { width: 60px; height: 60px; }
-  .bio-slot { width: 66px; }
-  .bio-number { font-size: 11px; }
-  /* El arco ya no cabe entero: se desliza por cuadrantes dentro de su caja. */
-  .odo-half, .bio-half { flex: 1 1 100%; justify-content: flex-start; overflow-x: auto; }
-  .perio-badge { font-size: 11px; padding: 4px 7px; }
+
+
+@media (min-width: 720px) {
+  .odo-half, .bio-half { flex: 1 1 auto; }
+  .odo-row, .bio-row { flex-wrap: nowrap; gap: 0; }
+}
+
+/* Con el dedo y sitio suficiente, el diente crece hasta dar 24 px por cara,
+   que es el mínimo de WCAG 2.5.8. En un móvil no cabe: allí el arco entero se
+   ve pequeño y el detalle se edita tocando el número del diente. */
+@media (pointer: coarse) and (min-width: 720px) {
+  .odo-slot { min-width: 78px; max-width: 84px; }
+  .odo-cross { max-width: 78px; }
+  .bio-slot { min-width: 60px; max-width: 66px; }
+  .bio-cross { max-width: 60px; }
+}
+
+/* En móvil la tabla se apila: cada fila es un bloque y cada dato lleva su
+   rótulo delante. Así no hay scroll horizontal ni acciones fuera de vista. */
+@media (max-width: 719px) {
+  .table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .table, .table tbody, .table tr, .table td { display: block; width: 100%; }
+  .table tr {
+    border: 1px solid var(--line); border-radius: var(--radius-sm);
+    padding: 4px 0; margin-bottom: 8px; background: var(--surface);
+  }
+  .table tr:last-child { margin-bottom: 0; }
+  .table td {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    border: 0; border-bottom: 1px solid var(--line-soft); padding: 7px 12px; text-align: right;
+  }
+  .table td:last-child { border-bottom: 0; }
+  .table td::before {
+    content: attr(data-label);
+    flex: 0 0 auto; text-align: left; color: var(--muted);
+    font-size: 10px; text-transform: uppercase; letter-spacing: .07em; font-weight: 700;
+    padding-top: 2px;
+  }
+  .table td[data-label=""]::before, .table td:not([data-label])::before { content: none; }
+  /* La celda de acciones cierra el bloque, a lo ancho y sin rótulo. */
+  .table td.actions-cell { justify-content: flex-end; background: var(--soft); border-radius: 0 0 6px 6px; }
+  .table td.actions-cell::before { content: none; }
+  .table tfoot, .table tfoot tr, .table tfoot td { display: block; width: 100%; }
 }

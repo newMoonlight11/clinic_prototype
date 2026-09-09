@@ -1071,7 +1071,6 @@
           <div class="crumbs">Clínica <span aria-hidden="true">›</span> ${trail}${
             view === 'patients' ? tpl` <span aria-hidden="true">›</span> <strong>${crumb ?? patient.shortName}</strong>` : ''
           }</div>
-          ${view === 'patients' ? '' : tpl`<h1 class="view-title">${navLabel(view)}</h1>`}
           ${view === 'patients'
             ? tpl`
               <button type="button" class="patient-switcher" data-patient-switcher>

@@ -187,11 +187,26 @@ ampliando (640 px, 900 px, 1100 px, 1400 px).
   desde 900 px. Al cambiar de sección la página sube al inicio.
 - Los espaciados y tamaños de letra usan `clamp()`, así que no hay saltos bruscos.
 - Las rejillas usan `repeat(auto-fit, minmax(...))`: se reacomodan solas sin media queries.
-- El **arco dental** se parte por cuadrantes y envuelve en pantalla angosta, en vez de scrollear.
+- El **arco dental y la biopelícula** se adaptan al ancho: en móvil cada mitad toma su propia línea
+  y el arco completo cabe sin deslizarse; desde 720 px las dos mitades vuelven a la misma línea con
+  su línea media. La cruz de caras se mide en porcentaje de su casilla (`width: 100%` +
+  `aspect-ratio: 1`), así el diente puede encogerse sin que la cruz se desborde.
+- **Objetivos táctiles**: con dedo y desde 720 px el diente crece hasta dar 26 px por cara, sobre el
+  mínimo de 24 que pide WCAG 2.5.8. En un teléfono los 16 dientes no caben a ese tamaño, así que
+  ahí se prioriza ver el arco completo; el detalle de cada pieza se edita tocando su número.
+- Las **tablas se apilan** por debajo de 720 px: cada fila pasa a ser un bloque con el rótulo de la
+  columna delante de cada dato, y las acciones cierran el bloque. Sin esto, editar y eliminar
+  quedaban fuera del área visible al deslizar la tabla.
 - El único bloque con scroll horizontal propio es la **grilla del periodontograma**: 16 dientes ×
   3 sitios no caben en un teléfono, y comprimirlos los volvería inservibles. Para esos casos está
   el editor por diente, que se abre tocando el número de la pieza.
 - `html, body { overflow-x: hidden }`: la página nunca scrollea en horizontal.
+
+## Marca
+
+El favicon de las tres páginas es la «a» de «avance CRM»: mismo azul del navbar (`#142838`), misma
+familia y mismo peso que el logo de la barra lateral. Va como SVG en un `data:` URI, sin archivo
+aparte ni petición extra.
 
 ## Notas de implementación
 

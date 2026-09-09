@@ -88,8 +88,8 @@
               ${patient.history.map((section) => {
                 const state = Data.REVIEW_STATES[section.review.state];
                 return tpl`<tr>
-                  <td><b>${section.label}</b></td>
-                  <td>${section.items.length === 0
+                  <td data-label="Sección"><b>${section.label}</b></td>
+                  <td data-label="Información">${section.items.length === 0
                     ? tpl`<span class="muted">Ninguno referido</span>`
                     : section.items.map(
                         (item) => tpl`<div class="history-item">
@@ -98,7 +98,7 @@
                           <span class="muted">${Data.HISTORY_SOURCES[item.source]}${item.context ? ` · ${item.context}` : ''}</span>
                         </div>`
                       )}</td>
-                  <td><span class="badge ${state.tone === 'ok' ? '' : 'warn'}">${state.label}</span>
+                  <td data-label="Revisión"><span class="badge ${state.tone === 'ok' ? '' : 'warn'}">${state.label}</span>
                     ${section.review.at ? tpl`<div class="muted xs">${UI.fmtDate(section.review.at)}</div>` : ''}</td>
                 </tr>`;
               })}

@@ -769,17 +769,17 @@
       <div class="documents-board">
         <div class="scroll-x">
           <table class="table">
-            <thead><tr><th style="width:104px">Fecha</th><th>Documento</th><th style="width:118px">Tipo</th><th style="width:138px">Estado</th><th style="width:116px"></th></tr></thead>
+            <thead><tr><th style="width:104px">Fecha</th><th>Documento</th><th style="width:118px">Tipo</th><th style="width:138px">Estado</th><th class="actions-cell" style="width:116px"></th></tr></thead>
             <tbody>
               ${patient.documents.map(
                 (doc) => tpl`<tr>
-                  <td class="muted">${UI.fmtDate(doc.date)}</td>
-                  <td><b>${doc.title}</b>
+                  <td class="muted" data-label="Fecha">${UI.fmtDate(doc.date)}</td>
+                  <td data-label="Documento"><b>${doc.title}</b>
                     <div class="muted xs">${doc.fileName ? `${doc.fileName} · ` : ''}${doc.size ?? '—'}</div>
                   </td>
-                  <td class="muted">${doc.type}</td>
-                  <td><span class="badge ${doc.status === 'Pendiente de firma' ? 'warn' : ''}">${doc.status}</span></td>
-                  <td><span class="row-actions">${documentRowActions(doc)}</span></td>
+                  <td class="muted" data-label="Tipo">${doc.type}</td>
+                  <td data-label="Estado"><span class="badge ${doc.status === 'Pendiente de firma' ? 'warn' : ''}">${doc.status}</span></td>
+                  <td class="actions-cell"><span class="row-actions">${documentRowActions(doc)}</span></td>
                 </tr>`
               )}
             </tbody>
@@ -1167,16 +1167,16 @@
               <button type="button" class="btn small primary" data-account-new>${UI.icon('plus')}<span>Registrar el primero</span></button></p>`
           : tpl`<div class="scroll-x">
               <table class="table">
-                <thead><tr><th style="width:104px">Fecha</th><th>Concepto</th><th style="width:100px">Ref.</th><th style="width:112px">Cargo</th><th style="width:112px">Abono</th><th style="width:74px"></th></tr></thead>
+                <thead><tr><th style="width:104px">Fecha</th><th>Concepto</th><th style="width:100px">Ref.</th><th style="width:112px">Cargo</th><th style="width:112px">Abono</th><th class="actions-cell" style="width:74px"></th></tr></thead>
                 <tbody>
                   ${patient.account.map(
                     (row) => tpl`<tr>
-                      <td class="muted">${UI.fmtDate(row.date)}</td>
-                      <td>${row.concept}</td>
-                      <td class="muted">${row.ref ?? '—'}</td>
-                      <td>${row.charge ? UI.fmtMoney(row.charge) : '—'}</td>
-                      <td>${row.payment ? UI.fmtMoney(row.payment) : '—'}</td>
-                      <td><span class="row-actions">
+                      <td class="muted" data-label="Fecha">${UI.fmtDate(row.date)}</td>
+                      <td data-label="Concepto">${row.concept}</td>
+                      <td class="muted" data-label="Ref.">${row.ref ?? '—'}</td>
+                      <td data-label="Cargo">${row.charge ? UI.fmtMoney(row.charge) : '—'}</td>
+                      <td data-label="Abono">${row.payment ? UI.fmtMoney(row.payment) : '—'}</td>
+                      <td class="actions-cell"><span class="row-actions">
                         <button type="button" class="icon-btn" data-account-edit="${row.id}" aria-label="Editar ${row.concept}">${UI.icon('pencil')}</button>
                         <button type="button" class="icon-btn" data-account-delete="${row.id}" aria-label="Eliminar ${row.concept}">${UI.icon('trash')}</button>
                       </span></td>
@@ -1478,17 +1478,17 @@
           </div>
           <div class="scroll-x">
             <table class="table">
-              <thead><tr><th style="width:104px">Fecha</th><th style="width:150px">Paciente</th><th>Concepto</th><th style="width:100px">Ref.</th><th style="width:112px">Cargo</th><th style="width:112px">Abono</th><th style="width:74px"></th></tr></thead>
+              <thead><tr><th style="width:104px">Fecha</th><th style="width:150px">Paciente</th><th>Concepto</th><th style="width:100px">Ref.</th><th style="width:112px">Cargo</th><th style="width:112px">Abono</th><th class="actions-cell" style="width:74px"></th></tr></thead>
               <tbody>
                 ${rows.map(
                   (row) => tpl`<tr>
-                    <td class="muted">${UI.fmtDate(row.date)}</td>
-                    <td><button type="button" class="link-button" data-goto-patient="${row.patient.id}">${row.patient.shortName}</button></td>
-                    <td>${row.concept}</td>
-                    <td class="muted">${row.ref ?? '—'}</td>
-                    <td>${row.charge ? UI.fmtMoney(row.charge) : '—'}</td>
-                    <td>${row.payment ? UI.fmtMoney(row.payment) : '—'}</td>
-                    <td><span class="row-actions">
+                    <td class="muted" data-label="Fecha">${UI.fmtDate(row.date)}</td>
+                    <td data-label="Paciente"><button type="button" class="link-button" data-goto-patient="${row.patient.id}">${row.patient.shortName}</button></td>
+                    <td data-label="Concepto">${row.concept}</td>
+                    <td class="muted" data-label="Ref.">${row.ref ?? '—'}</td>
+                    <td data-label="Cargo">${row.charge ? UI.fmtMoney(row.charge) : '—'}</td>
+                    <td data-label="Abono">${row.payment ? UI.fmtMoney(row.payment) : '—'}</td>
+                    <td class="actions-cell"><span class="row-actions">
                       <button type="button" class="icon-btn" data-account-edit="${row.id}" aria-label="Editar ${row.concept}">${UI.icon('pencil')}</button>
                       <button type="button" class="icon-btn" data-account-delete="${row.id}" aria-label="Eliminar ${row.concept}">${UI.icon('trash')}</button>
                     </span></td>
