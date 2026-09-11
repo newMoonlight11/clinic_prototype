@@ -23,9 +23,9 @@
     "@storybook/addon-docs": "^10.6.0",
     "@storybook/addon-mcp": "^10.6.0",
     "prop-types": "latest",
-    "vitest": "latest",
+    "vitest": "^4.1.11",
     "playwright": "latest",
-    "@vitest/browser-playwright": "latest",
-    "@vitest/coverage-v8": "latest"
+    "@vitest/browser-playwright": "^4.1.11",
+    "@vitest/coverage-v8": "^4.1.11"
   }
 }
