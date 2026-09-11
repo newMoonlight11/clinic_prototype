@@ -1,0 +1,35 @@
+/* Tokens de diseño compartidos, extraídos de design-prototypes/styles.css.
+   Cualquier componente nuevo debe leer de aquí en vez de repetir valores. */
+:root {
+  --navy: #142838;
+  --navy-soft: #1d3547;
+  --navy-line: #22394c;
+  --primary: #1f4b60;
+  --primary-strong: #163a4b;
+  --primary-soft: #e7eff3;
+  --primary-tint: #f2f7f9;
+  --accent: #2aa39c;
+
+  --ink: #16232e;
+  --muted: #64757f;
+  --line: #dde5ea;
+  --line-soft: #eaf0f3;
+  --soft: #f4f8fa;
+  --surface: #ffffff;
+  --canvas: #eef2f5;
+
+  --green: #17795a;
+  --amber: #9a6413;
+  --red: #b8434c;
+
+  --shadow: 0 1px 3px rgba(16, 35, 48, 0.07);
+  --shadow-lg: 0 16px 40px rgba(16, 35, 48, 0.18);
+  --radius: 10px;
+  --radius-sm: 7px;
+
+  /* Tipografía: Inter es la fuente del CRM. Cada app decide cómo la carga
+     (next/font en Next.js, @import en Storybook) y puede sobreescribir esta
+     variable con su propia fuente ya optimizada; el resto de la pila queda
+     como respaldo si esa carga falla. */
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}

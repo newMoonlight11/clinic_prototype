@@ -1,0 +1,15 @@
+.iconBtn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 5px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+.iconBtn:hover {
+  background: var(--primary-tint);
+  color: var(--primary);
+}

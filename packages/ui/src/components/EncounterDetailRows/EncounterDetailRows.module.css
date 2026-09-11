@@ -1,0 +1,27 @@
+.row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.row:last-child {
+  border-bottom: 0;
+}
+.row span {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.row p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .row {
+    grid-template-columns: 168px 1fr;
+    gap: 12px;
+  }
+}

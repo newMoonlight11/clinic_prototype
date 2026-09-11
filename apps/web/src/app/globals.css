@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "ui/src/tokens.css";
+@import "ui/src/base.css";
+
+/* El diseño clínico no tiene modo oscuro: es una sola paleta fija, por
+   diseño (ver design-prototypes/README.md). */
+@theme inline {
+  --color-background: var(--canvas);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-inter), Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}

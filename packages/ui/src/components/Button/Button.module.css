@@ -1,0 +1,55 @@
+.btn {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  background: var(--surface);
+  color: var(--ink);
+  font-weight: 650;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s, border-color 0.15s;
+}
+.btn:hover {
+  background: var(--primary-tint);
+  border-color: #c9d7de;
+}
+
+.primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.primary:hover {
+  background: var(--primary-strong);
+  border-color: var(--primary-strong);
+}
+
+.danger {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+.danger:hover {
+  background: #892d35;
+  border-color: #892d35;
+}
+
+.ghost {
+  background: transparent;
+  border-color: transparent;
+}
+.ghost:hover {
+  background: var(--primary-tint);
+}
+
+.small {
+  padding: 6px 9px;
+  font-size: 12px;
+}
+
+.full {
+  width: 100%;
+  justify-content: center;
+}

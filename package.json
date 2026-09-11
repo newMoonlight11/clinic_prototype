@@ -1,0 +1,18 @@
+{
+  "name": "design-prototypes",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=web",
+    "storybook": "npm run storybook --workspace=ui",
+    "build-storybook": "npm run build-storybook --workspace=ui --",
+    "chromatic": "dotenv -e .env -- npx chromatic"
+  },
+  "devDependencies": {
+    "chromatic": "^18.8.1",
+    "dotenv-cli": "^11.0.0"
+  }
+}
